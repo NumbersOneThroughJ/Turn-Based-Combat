@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://v74e5aspmsq1"]
+
+[ext_resource type="Script" path="res://Imports/TurnTacker/TurnTrackerOperator.gd" id="1_p3l1d"]
+[ext_resource type="Script" path="res://Imports/TurnTacker/Top_Node.gd" id="2_t8y3m"]
+[ext_resource type="Texture2D" uid="uid://dmpul2w23uj81" path="res://sprites/zombieIcon.png" id="3_gtffw"]
+[ext_resource type="Texture2D" uid="uid://p8jf36yctner" path="res://sprites/IconBorder.png" id="4_s0n1e"]
+[ext_resource type="Script" path="res://Imports/TurnTacker/PathIndex.gd" id="5_hksmf"]
+
+[sub_resource type="Curve2D" id="Curve2D_5xnrd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 50, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 150, 0, 0, 0, 0, 0, 150, 150, 0, 0, 0, 0, 100, 150, 0, 0, 0, 0, 100, 100)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_hj3q2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 100, 100, 0, 0, 0, 0, 100, 50)
+}
+point_count = 2
+
+[node name="TurnTracker" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("topNode", "TurnTemplate")]
+position = Vector2(-70, 30)
+script = ExtResource("1_p3l1d")
+speed = 6.0
+topNode = NodePath("Top_Node")
+TurnTemplate = NodePath("../Turn")
+
+[node name="Top_Node" type="Path2D" parent="Node2D"]
+position = Vector2(0, -10)
+curve = SubResource("Curve2D_5xnrd")
+script = ExtResource("2_t8y3m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Node2D/Top_Node"]
+position = Vector2(100, 50)
+rotates = false
+script = ExtResource("5_hksmf")
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Top_Node/PathFollow2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Top_Node/PathFollow2D/ColorRect"]
+position = Vector2(25, 25)
+texture = ExtResource("3_gtffw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D/Top_Node/PathFollow2D/ColorRect/Sprite2D"]
+texture = ExtResource("4_s0n1e")
+
+[node name="Turn" type="Path2D" parent="."]
+visible = false
+curve = SubResource("Curve2D_hj3q2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Turn"]
+position = Vector2(100, 100)
+rotates = false
+script = ExtResource("5_hksmf")
+
+[node name="ColorRect" type="ColorRect" parent="Turn/PathFollow2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Turn/PathFollow2D/ColorRect"]
+position = Vector2(25, 25)
+texture = ExtResource("3_gtffw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Turn/PathFollow2D/ColorRect/Sprite2D"]
+texture = ExtResource("4_s0n1e")

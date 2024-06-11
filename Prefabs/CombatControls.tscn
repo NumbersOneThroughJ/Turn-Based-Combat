@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=3 uid="uid://daq7vp8c766nn"]
+
+[ext_resource type="Script" path="res://Prefabs/CombatGUIManager.gd" id="1_jh1po"]
+
+[node name="CombatControls" type="Node2D" node_paths=PackedStringArray("mainControls", "TargetingControls")]
+script = ExtResource("1_jh1po")
+mainControls = NodePath("Main Controls")
+TargetingControls = NodePath("Targeting Control")
+
+[node name="Main Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pass" type="Button" parent="Main Controls"]
+layout_mode = 0
+offset_top = 63.0
+offset_right = 62.0
+offset_bottom = 94.0
+text = "Pass"
+
+[node name="Attack" type="Button" parent="Main Controls"]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 62.0
+offset_bottom = 62.0
+text = "Attack"
+
+[node name="Previous" type="Button" parent="Main Controls"]
+visible = false
+layout_mode = 0
+offset_right = 31.0
+offset_bottom = 31.0
+text = "<"
+
+[node name="Next" type="Button" parent="Main Controls"]
+visible = false
+layout_mode = 0
+offset_left = 31.0
+offset_right = 62.0
+offset_bottom = 31.0
+text = ">"
+
+[node name="Targeting Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Previous" type="Button" parent="Targeting Control"]
+layout_mode = 0
+offset_right = 35.0
+offset_bottom = 31.0
+text = "<"
+
+[node name="Next" type="Button" parent="Targeting Control"]
+layout_mode = 0
+offset_left = 36.0
+offset_right = 71.0
+offset_bottom = 31.0
+text = ">"
+
+[node name="Confirm" type="Button" parent="Targeting Control"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 31.0
+offset_bottom = 63.0
+text = "Confirm"
+
+[node name="Back" type="Button" parent="Targeting Control"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 95.0
+text = "Back"
+
+[connection signal="pressed" from="Main Controls/Pass" to="." method="MainControls_on_pass_pressed"]
+[connection signal="pressed" from="Main Controls/Attack" to="." method="MainControls_on_attack_pressed"]
+[connection signal="pressed" from="Main Controls/Previous" to="." method="MainControls_on_previous_pressed"]
+[connection signal="pressed" from="Main Controls/Next" to="." method="MainControls_on_next_pressed"]
+[connection signal="pressed" from="Targeting Control/Previous" to="." method="TargetingControls_on_previous_pressed"]
+[connection signal="pressed" from="Targeting Control/Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="Targeting Control/Next" to="." method="TargetingControls_on_next_pressed"]
+[connection signal="pressed" from="Targeting Control/Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Targeting Control/Confirm" to="." method="TargetingControls_on_confirm_pressed"]
+[connection signal="pressed" from="Targeting Control/Confirm" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="Targeting Control/Back" to="." method="TargetingControls_on_back_pressed"]
+[connection signal="pressed" from="Targeting Control/Back" to="." method="_on_previous_pressed"]

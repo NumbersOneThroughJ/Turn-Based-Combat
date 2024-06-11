@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://fprvhkomx73x"]
+
+[ext_resource type="PackedScene" uid="uid://csr8tl8iacyxk" path="res://Prefabs/humanoid_character.tscn" id="1_trxg4"]
+[ext_resource type="Texture2D" uid="uid://shld0p5wdd4" path="res://sprites/ToxicMush.png" id="2_5apgl"]
+[ext_resource type="Texture2D" uid="uid://ip31hm6nlsxm" path="res://sprites/ToxicMushIcon.png" id="3_3dex8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_26d5c"]
+viewport_path = NodePath("InfoBar")
+
+[node name="Humanoid Enemy" instance=ExtResource("1_trxg4")]
+
+[node name="Humanoid" parent="." index="0"]
+texture = ExtResource("2_5apgl")
+
+[node name="Stats" parent="." index="3"]
+health_rand_min = 1
+health_rand_max = 2
+defence_rand_min = 10
+defence_rand_max = 15
+attack_rand_min = 3
+attack_rand_max = 10
+speed_rand_min = 3
+speed_rand_max = 10
+
+[node name="HealthBar" parent="." index="4"]
+texture = SubResource("ViewportTexture_26d5c")
+
+[node name="Icon" parent="." index="7"]
+texture = ExtResource("3_3dex8")

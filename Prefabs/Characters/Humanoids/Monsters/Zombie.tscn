@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dk4sdyby7n5j8"]
+
+[ext_resource type="PackedScene" uid="uid://csr8tl8iacyxk" path="res://Prefabs/humanoid_character.tscn" id="1_glt2p"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_emd1u"]
+viewport_path = NodePath("InfoBar")
+
+[node name="Humanoid Enemy" instance=ExtResource("1_glt2p")]
+
+[node name="Stats" parent="." index="3"]
+health_rand_min = 1
+health_rand_max = 3
+defence_rand_min = 5
+defence_rand_max = 10
+attack_rand_min = 3
+attack_rand_max = 6
+speed_rand_max = 6
+
+[node name="HealthBar" parent="." index="4"]
+texture = SubResource("ViewportTexture_emd1u")
